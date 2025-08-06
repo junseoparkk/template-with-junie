@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_URL:localhost:3306/template-db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${MYSQL_USER:template-user}
+    password: ${MYSQL_PASSWORD:template-pw}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: false
+
+springdoc:
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /swagger-ui
+    url: /v3/api-docs
+    display-request-duration: true
+    operations-sorter: alpha

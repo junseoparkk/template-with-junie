@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: template-mysql8
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_USER: template-user
+      MYSQL_PASSWORD: template-pw
+      MYSQL_DATABASE: template-db
+      MYSQL_ROOT_PASSWORD: root
+      TZ: 'Asia/Seoul'
+    volumes:
+      - template-db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  template-db:
